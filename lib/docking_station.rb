@@ -7,10 +7,12 @@ class DockingStation
   end
 
   def dock_bike(bike)
-    @bike = bike 
+   # We need to return the bike we dock
+    @bike = bike
   end
 
   def bike
     @bike
   end
+
 end

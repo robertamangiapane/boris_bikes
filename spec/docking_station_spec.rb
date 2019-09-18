@@ -20,7 +20,12 @@ describe DockingStation do
     it "returns docked bike" do
       bike = Bike.new
       subject.dock_bike(bike)
-      expect(subject.bike). to eq bike
-    end 
+      # Again, we need to return the bike we just docked
+      expect(subject.bike).to eq bike
+    end
+
+    it "throws error if no bikes in station" do
+      expect{subject.release_bike}.to raise_error("no bikes")
+    end
 
 end
