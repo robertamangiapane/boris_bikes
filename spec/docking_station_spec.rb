@@ -8,12 +8,19 @@ describe DockingStation do
       expect(bike).to be_working
     end
 
-    it { is_expected.to respond_to :dock_bike }
+    it { is_expected.to respond_to(:dock_bike).with(1).argument }
 
-    it "add bikes to dock list" do
-      # bike = subject.release_bike
-      # bike.dock_bike
-      expect(@bikes.count).to eq 1
+    it { is_expected.to respond_to :bike }
+
+    it "docks a bike" do
+      bike = Bike.new
+      expect(subject.dock_bike(bike)).to eq bike
     end
+
+    it "returns docked bike" do
+      bike = Bike.new
+      subject.dock_bike(bike)
+      expect(subject.bike). to eq bike
+    end 
 
 end
