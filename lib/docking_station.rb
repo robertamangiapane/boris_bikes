@@ -1,25 +1,30 @@
 require_relative 'bike'
 
 class DockingStation
+
+  attr_reader :docked_bikes
+
   def initialize
     @docked_bikes = []
   end
 
   def release_bike
-    fail 'No bikes available' if @docked_bikes.empty?
+    fail 'No bikes available' if empty?
     @docked_bikes.pop
   end
 
   def dock_bike(bike)
-   # We need to return the bike we dock
-   # Use an instance variable to store the bike in the 'state' of this instance
-   fail 'Docking station full' if @docked_bikes.count >= 20
+   fail 'Docking station full' if full?
    @docked_bikes << bike
   end
 
+  private
 
-  # Use an attribute reader to read the @bike attribute we set
-  attr_reader :docked_bikes
+  def full?
+    return true if @docked_bikes.count >= 20
+  end
 
-
+  def empty?
+    return true if @docked_bikes.count == 0
+  end
 end
