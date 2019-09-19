@@ -3,14 +3,28 @@ require 'docking_station'
 describe DockingStation do
     it { is_expected.to respond_to :release_bike }
 
-    it "gives a bike" do
-      bike = subject.release_bike
-      expect(bike).to be_working
+    # use a '#' before a method name
+     # to imply that it is an instance method.
+     # Until now, we have been describing behaviour in a general sense. However,
+     # we are now describing behaviour specific to a particular method.
+     # By nesting this in another describe block, we are able to DRY out our
+     # descriptions.
+    describe '#release_bike' do
+      it 'releases a bike' do
+        bike = Bike.new
+        subject.dock_bike(bike)
+        #release the bike we docked
+        expect(subject.release_bike).to eq bike
+      end
+
+      it 'raises an error when no bikes available' do
+        expect { subject.release_bike }.to raise_error 'No bikes available'
+      end
     end
 
     it { is_expected.to respond_to(:dock_bike).with(1).argument }
 
-    it { is_expected.to respond_to :bike }
+    it { is_expected.to respond_to(:bike) }
 
     it "docks a bike" do
       bike = Bike.new
@@ -23,9 +37,4 @@ describe DockingStation do
       # Again, we need to return the bike we just docked
       expect(subject.bike).to eq bike
     end
-
-    it "throws error if no bikes in station" do
-      expect{ subject.release_bike }.to raise_error("no bikes")
-    end
-
 end
