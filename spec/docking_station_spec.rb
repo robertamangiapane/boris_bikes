@@ -3,10 +3,9 @@ require 'docking_station'
 describe DockingStation do
     it { is_expected.to respond_to :release_bike }
 
-    # use a '#' before a method name
-     # to imply that it is an instance method.
+    # Use a '#' before a method name to imply that it is an instance method.
      # Until now, we have been describing behaviour in a general sense. However,
-     # we are now describing behaviour specific to a particular method.
+     # We are now describing behaviour specific to a particular method.
      # By nesting this in another describe block, we are able to DRY out our
      # descriptions.
     describe '#release_bike' do
